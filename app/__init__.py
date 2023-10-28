@@ -1,7 +1,10 @@
 from flask import Flask, render_template
+from flask_migrate import Migrate
+
 from app.config import  app_config as AppConfig
 from app.models import db
 from app.students import student_blueprint
+
 
 def create_app(config_mode='dev'):
     app = Flask(__name__)
@@ -12,7 +15,7 @@ def create_app(config_mode='dev'):
     app.config.from_object(CurrentConfigClass) # csrf
 
     db.init_app(app)
-
+    migrate = Migrate(app, db)
 
 
     @app.errorhandler(404)

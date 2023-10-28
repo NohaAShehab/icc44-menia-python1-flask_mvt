@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import  datetime
 from flask import url_for
 db= SQLAlchemy()
 
@@ -9,7 +10,10 @@ class Student(db.Model):
     name = db.Column(db.String)
     email = db.Column(db.String)
     image= db.Column(db.String)
-
+    grade = db.Column(db.Integer, default=10)
+    address = db.Column(db.String, default='Cairo')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    update_at=  db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     @classmethod
     def get_all_students(cls):
         return cls.query.all()
