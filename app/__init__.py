@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from app.config import  app_config as AppConfig
 from app.models import db
 from app.students import student_blueprint
+from app.tracks import  track_blueprint
 
 
 def create_app(config_mode='dev'):
@@ -23,5 +24,6 @@ def create_app(config_mode='dev'):
         return render_template('notfound.html')
 
     app.register_blueprint(student_blueprint)
+    app.register_blueprint(track_blueprint)
 
     return app

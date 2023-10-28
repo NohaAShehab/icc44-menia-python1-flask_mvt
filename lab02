@@ -1,0 +1,17 @@
+
+
+convert your blog to MVT architecture
+You must use postgres  in your production configuration
+You use migrations while dealing with database
+
+create new Model with name category
+category (id , name, description, image, created_at, updated_at)
+
+create complete crud operations on the Category model --
+and display posts associated to this category
+
+--Don't forget to modify create post to allow choosing new category
+from the existing ones.
+
+
+

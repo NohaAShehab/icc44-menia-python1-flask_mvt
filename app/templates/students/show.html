@@ -8,6 +8,10 @@
   <div class="card-body">
     <h5 class="card-title"> {{student.name}}</h5>
     <p class="card-text">Email: {{student.email}}</p>
+    <p class="card-text"> Track : {{student.track_id}}  , {{student.track}}
+      <a href="{{student.track.show_url}}"> {{student.track.name}} </a>
+    </p>
+    <p> </p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>

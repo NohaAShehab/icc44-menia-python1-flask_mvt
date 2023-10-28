@@ -1,5 +1,5 @@
 from flask import  request, render_template, redirect, url_for
-from app.models import  Student
+from app.models import  Student, Track
 from app.students import student_blueprint
 
 
@@ -21,10 +21,11 @@ def student_delete(id):
 
 @student_blueprint.route('/create', endpoint='create', methods = ['GET', 'POST'])
 def student_create():
+    tracks = Track.get_all_tracks()
     print(f'Request received {request}')
     if request.method=='POST':
         print(request.form)
         student = Student.save_object(requestdata=request.form)
         return redirect(student.show_url)
 
-    return render_template('students/create.html')
+    return render_template('students/create.html', tracks=tracks)

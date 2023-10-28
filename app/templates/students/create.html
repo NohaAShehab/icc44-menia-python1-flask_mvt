@@ -16,6 +16,15 @@
     <label for="exampleInputEmail1" class="form-label">Image</label>
     <input type="text" name="image" class="form-control" aria-describedby="emailHelp">
   </div>
+     <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Track</label>
+   <select class="form-select" aria-label="Default select example" name="track_id">
+      <option selected value="" disabled >Open this select menu</option>
+       {% for track in tracks %}
+        <option value="{{track.id}}">{{track.name}}</option>
+        {% endfor %}
+</select>
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

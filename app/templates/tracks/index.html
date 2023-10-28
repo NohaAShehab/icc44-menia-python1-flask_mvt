@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Tracks Index {% endblock %}
+{% block body %}
+<a class="btn btn-dark" href="{{url_for('tracks.create')}}"> Add New Track </a>
+    <h1> All Tracks </h1>
+    <table class="table">
+        <tr>
+            <th> ID</th> <th> Name</th>
+            <th> Show </th>
+          <th> Delete</th>
+        </tr>
+
+        {% for track in tracks %}
+            <tr>
+                    <td> {{track.id}}</td>
+                <td> {{track.name}} </td>
+
+                <td> <a class="btn btn-primary" href="{{track.show_url}}">  Show</a></td>
+              <td> <a class="btn btn-danger" href="{{track.delete_url}}">  Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

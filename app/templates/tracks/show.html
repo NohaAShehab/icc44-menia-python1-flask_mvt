@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Students Index {% endblock %}
+{% block body %}
+    <h1> Track Info  </h1>
+
+<div class="card" style="width: 18rem;">
+  <img src="{{url_for('static', filename='/tracks/images/'+track.image)}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"> {{track.name}}</h5>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<h1> Students in this track </h1>
+  {{track.students}}
+  {% for std in track.students %}
+    <li> <a href="{{std.show_url}}"> {{std.name}} </a></li>
+  {% endfor %}
+{% endblock %}
