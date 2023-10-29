@@ -1,6 +1,7 @@
 # define possible congfiguration you might need
-
+import  os
 class Config:
+    SECRET_KEY=os.urandom(32)
     @staticmethod
     def init_app():
         pass

@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Create Student {% endblock %}
+{% block body %}
+    <h1> Create Track using Form </h1>
+
+<form method="POST">
+<!--   {{form}}-->
+     {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.name.label(class='form-label') }}
+        {{ form.name(size=20, class='form-control') }}
+
+        {% if form.name.errors %}
+    <ul class="errors">
+    {% for error in form.name.errors %}
+        <li class="text-danger">{{ error }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+    </div>
+
+
+    <div class="mb-3">
+    {{ form.image.label(class='form-label') }}
+        {{ form.image(size=100, class='form-control') }}
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

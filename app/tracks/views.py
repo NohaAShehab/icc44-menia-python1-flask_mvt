@@ -1,6 +1,7 @@
 from flask import  request, render_template, redirect, url_for
 from app.tracks import track_blueprint
 from app.models import  Track
+from app.tracks.forms import  TrackForm
 
 
 @track_blueprint.route('/create', endpoint='create', methods = ['GET', 'POST'])
@@ -9,7 +10,7 @@ def track_create():
     if request.method=='POST':
         print(request.form)
         track = Track.save_object(requestdata=request.form)
-        return 'added'
+        return  redirect(track.show_url)
 
     return render_template('tracks/create.html')
 
@@ -29,3 +30,19 @@ def track_delete(id):
     Track.delete_object(id)
     # redirect
     return  redirect(url_for('tracks.index'))
+
+
+@track_blueprint.route('/create/forms', endpoint='formcreate', methods = ['GET', 'POST'])
+def track_form_create():
+    form = TrackForm()
+    if request.method=='POST':
+        if form.validate_on_submit():
+
+        ## remove csrf_token ? from send data
+            print(request.form)
+            request_data = dict(request.form)
+            del request_data['csrf_token']
+            track = Track.save_object(requestdata=request_data)
+            return  redirect(track.show_url)
+
+    return render_template('tracks/createform.html', form=form)
