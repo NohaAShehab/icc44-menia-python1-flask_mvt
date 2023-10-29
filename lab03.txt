@@ -1,0 +1,4 @@
+
+create apis for your posts
+
+create post , edit post , delete post, list specific post , list all posts

@@ -54,7 +54,10 @@ class Student(db.Model):
     grade = db.Column(db.Integer, default=10)
     address = db.Column(db.String, default='Cairo')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    update_at=  db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    update_at = db.Column(db.DateTime, server_default=db.func.now(),
+                          server_onupdate=db.func.now())
+    updated_at = db.Column(db.DateTime,
+                          server_onupdate=db.func.now())
     track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'), nullable=True)
     @classmethod
     def get_all_students(cls):

@@ -6,7 +6,7 @@ from app.config import  app_config as AppConfig
 from app.models import db
 from app.students import student_blueprint
 from app.tracks import  track_blueprint
-from app.students.api.api_views import StudentListClass
+from app.students.api.api_views import StudentListClass, StudentResource
 
 
 def create_app(config_mode='dev'):
@@ -23,6 +23,7 @@ def create_app(config_mode='dev'):
 
     ## add api urls
     api.add_resource(StudentListClass, '/api/students/')
+    api.add_resource(StudentResource, '/api/students/<int:std_id>')
 
 
     @app.errorhandler(404)
