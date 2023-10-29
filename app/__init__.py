@@ -1,10 +1,12 @@
 from flask import Flask, render_template
 from flask_migrate import Migrate
+from flask_restful import Api
 
 from app.config import  app_config as AppConfig
 from app.models import db
 from app.students import student_blueprint
 from app.tracks import  track_blueprint
+from app.students.api.api_views import StudentListClass
 
 
 def create_app(config_mode='dev'):
@@ -17,6 +19,10 @@ def create_app(config_mode='dev'):
 
     db.init_app(app)
     migrate = Migrate(app, db)
+    api = Api(app)
+
+    ## add api urls
+    api.add_resource(StudentListClass, '/api/students/')
 
 
     @app.errorhandler(404)
